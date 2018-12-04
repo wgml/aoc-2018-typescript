@@ -6,4 +6,9 @@ export const input = {
   listOfStrings: (lines: string) => lines.split('\n'),
 };
 
+export const math = {
+  max: (values: number[]) => values.reduce((a: number, b: number) => Math.max(a, b)),
+  sum: (values: number[]) => values.reduce((a: number, b: number) => a + b),
+};
+
 export const zip = (rows: any[][]) => rows[0].map((_, c) => rows.map(row => row[c]));
