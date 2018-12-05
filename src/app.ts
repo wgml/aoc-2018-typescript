@@ -1,36 +1,36 @@
 import * as common from './common';
-import * as day01 from './day01';
-import * as day02 from './day02';
-import * as day03 from './day03';
-import * as day04 from './day04';
-import * as day05 from './day05';
 
-{
-  const input = common.input.dayFromFile(1);
-  global.console.log(day01.first(input));
-  global.console.log(day01.second(input));
+const runForDay = (day: number) => {
+  const dayStr = `${day}`.padStart(2, '0');
+  try {
+    const functions = require(`./day${dayStr}`);
+    process.stdout.write(`\n* Running problem for day ${dayStr}...\n`);
+
+    const input = common.input.dayFromFile(dayStr);
+    {
+      process.stdout.write('  First  ... ');
+      const result = common.time(() => functions.first(input));
+      process.stdout.write('(took ' + `${result.elapsed}`.padStart(5, ' ') + `ms) ${result.result}\n`);
+    }
+    {
+      process.stdout.write('  Second ... ');
+      const result = common.time(() => functions.second(input));
+      process.stdout.write('(took ' + `${result.elapsed}`.padStart(5, ' ') + `ms) ${result.result}\n`);
+    }
+  } catch (e) {
+    return;
+  }
+};
+
+let days = [];
+if (process.argv.length > 2) {
+  for (const day of process.argv.slice(2)) {
+    days.push(parseInt(day, 10));
+  }
+} else {
+  days = Array(25)
+    .fill(0)
+    .map((v, i) => i);
 }
 
-{
-  const input = common.input.dayFromFile(2);
-  global.console.log(day02.first(input));
-  global.console.log(day02.second(input));
-}
-
-{
-  const input = common.input.dayFromFile(3);
-  global.console.log(day03.first(input));
-  global.console.log(day03.second(input));
-}
-
-{
-  const input = common.input.dayFromFile(4);
-  global.console.log(day04.first(input));
-  global.console.log(day04.second(input));
-}
-
-{
-  const input = common.input.dayFromFile(5);
-  global.console.log(day05.first(input));
-  global.console.log(day05.second(input));
-}
+days.forEach(runForDay);

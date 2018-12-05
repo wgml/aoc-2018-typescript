@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 
 export const input = {
-  dayFromFile: (day: number) => fs.readFileSync(`./input/${day}.txt`).toString(),
+  dayFromFile: (day: string) => fs.readFileSync(`./input/${day}.txt`).toString(),
   listOfNumbers: (lines: string) => lines.split('\n').map(Number),
   listOfStrings: (lines: string) => lines.split('\n'),
 };
@@ -12,3 +12,11 @@ export const math = {
 };
 
 export const zip = (rows: any[][]) => rows[0].map((_, c) => rows.map(row => row[c]));
+
+export const time = (func: () => any): { result: any; elapsed: number } => {
+  const start = new Date().getTime();
+  const result = func();
+  const elapsed = new Date().getTime() - start;
+
+  return { result, elapsed };
+};
