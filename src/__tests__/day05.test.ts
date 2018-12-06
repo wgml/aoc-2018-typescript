@@ -7,7 +7,7 @@ describe('First', () => {
   });
 });
 
-describe('First', () => {
+describe('Second', () => {
   it('Should find length of 4', () => {
     const input: string = `dabAcCaCBAcCcaDA`;
     expect(second(input)).toBe(4);
