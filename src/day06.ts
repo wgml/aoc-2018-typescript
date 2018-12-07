@@ -60,7 +60,7 @@ export const second = (input: string, maxDist?: number) => {
   }
 
   const points = parsePoints(input);
-  const maxCoord = deduceMaxCoord(points) + maxDist / points.length;
+  const maxCoord = deduceMaxCoord(points) + Math.min(100, maxDist);
 
   let matchingPoints = 0;
   for (let x = -maxCoord; x <= maxCoord; ++x) {
