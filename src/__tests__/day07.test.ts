@@ -13,7 +13,7 @@ Step F must be finished before step E can begin.`;
   });
 });
 
-describe('First', () => {
+describe('Second', () => {
   it('Should take 15 steps', () => {
     const input: string = `Step C must be finished before step A can begin.
 Step C must be finished before step F can begin.
