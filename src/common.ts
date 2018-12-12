@@ -11,7 +11,7 @@ export const math = {
   sum: (values: number[]) => values.reduce((a: number, b: number) => a + b),
 };
 
-export const zip = (rows: any[][]) => rows[0].map((_, c) => rows.map(row => row[c]));
+export const zip = <T>(rows: T[][]) => rows[0].map((_, c) => rows.map(row => row[c]));
 
 export const time = (func: () => any): { result: any; elapsed: number } => {
   const start = new Date().getTime();
