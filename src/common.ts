@@ -20,3 +20,17 @@ export const time = (func: () => any): { result: any; elapsed: number } => {
 
   return { result, elapsed };
 };
+
+export function DefaultArray<T>(factory: () => T): T[] {
+  const tgt: T[] = [];
+
+  const handler = {
+    get: (target: any, name: any) => {
+      if (!(name in target)) {
+        target[name] = factory();
+      }
+      return target[name];
+    },
+  };
+  return new Proxy(tgt, handler);
+}
